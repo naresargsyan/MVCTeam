@@ -11,6 +11,7 @@ namespace WebApplication1.Controllers
         // GET: Service
         public ActionResult Index()
         {
+
             return View();
         }
     }
