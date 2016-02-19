@@ -1,7 +1,26 @@
-﻿
+﻿@using MVC.HelloWorld.Models
+@model IEnumerable<PizzaViewModel>
 @{
     ViewBag.Title = "Pizza";
 }
 
 <h2>Pizza</h2>
+<p>Here is my pizza</p>
+<ul>
+   
 
+        @foreach (var item in Model)
+        {
+            <li> @item.Price</li>
+        }
+
+    
+</ul>
+@using (Html.BeginForm()) {
+<input type="text" value="input here">
+   
+}
+@foreach (var key in ViewData.Keys)
+{
+    <p>@ViewData[key]</p>
+}
