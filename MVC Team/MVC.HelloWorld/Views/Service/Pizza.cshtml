@@ -3,23 +3,24 @@
 @{
     ViewBag.Title = "Pizza";
 }
+<form class="form-inline">
+ 
+        <label  class="form-group">Search tools</label>
 
-<h2>Pizza</h2>
-<p>Here is my pizza</p>
-<ul>
-   
-
+        <input class="form-group" type="text" value="Search ">
+    
+</form>
+<div role="document">
+    <ul class="jumbotron">
         @foreach (var item in Model)
         {
-            <li> @item.Price</li>
+            <li> @item.Name @item.Price</li>
         }
 
-    
-</ul>
-@using (Html.BeginForm()) {
-<input type="text" value="input here">
+    </ul>
+</div>
    
-}
+
 @foreach (var key in ViewData.Keys)
 {
     <p>@ViewData[key]</p>
