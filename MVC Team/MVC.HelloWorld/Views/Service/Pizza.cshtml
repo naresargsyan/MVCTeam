@@ -14,8 +14,10 @@
     <ul class="jumbotron">
         @foreach (var item in Model)
         {
-            <li> @item.Name @item.Price</li>
+          
+            <li><input type="submit" value="@item.Name" onclick="@ /><label>@item.Price</label></li>
         }
+        
 
     </ul>
 </div>
