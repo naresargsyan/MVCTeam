@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProductManager;
+using System.Transactions;
+
 
 namespace ProductManager.Controllers
 {
@@ -17,7 +19,7 @@ namespace ProductManager.Controllers
         // GET: Products
         public ActionResult Index()
         {
-          
+
             var products = db.Products.Include(p => p.Category);
             return View(products.ToList());
         }
@@ -49,26 +51,32 @@ namespace ProductManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "ID,Name,Quantity,Category_ID")] Product product)
+        public ActionResult Create([Bind(Include = "Name,Quantity,Category_ID")] Product product)
+    {
+        if (ModelState.IsValid)
         {
-            if (ModelState.IsValid)
-            {
-                db.Products.Add(product);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
 
-            ViewBag.Category_ID = new SelectList(db.Categories, "ID", "Name", product.Category_ID);
-            return View(product);
+            product.ID = Guid.NewGuid().ToString();
+            db.Products.Add(product);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+           
         }
+
+
+        ViewBag.Category_ID = new SelectList(db.Categories, "ID", "Name", product.Category_ID);
+        return View(product);
+    }
+
 
         // GET: Products/Edit/5
         public ActionResult Edit(string id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
+        { 
+
+                if (id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
             Product product = db.Products.Find(id);
             if (product == null)
             {

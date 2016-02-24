@@ -21,14 +21,23 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Products", "Index", "Products")</li>
+
+                    <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
                 </ul>
             </div>
         </div>
     </div>
     <div class="container body-content">
-        @RenderBody()
+        <div class="row">
+            <div class="col-md-9">@RenderBody()</div>
+            <div class="col-md-3"><ul class="list-group-item active">
+<li class="list-group-item ">@Html.ActionLink("Products", "Index", "Products")</li>
+
+<li class="list-group-item ">@Html.ActionLink("Categories", "Index", "Categories")</li>
+     </ul></div>
+        </div>
+     
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
