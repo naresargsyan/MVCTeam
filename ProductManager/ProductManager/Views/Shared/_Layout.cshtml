@@ -26,20 +26,59 @@
 
                     <li>@Html.ActionLink("Categories", "Index", "Categories")</li>
                 </ul>
-            
+                @using (Html.BeginForm("Index", "Search",FormMethod.Get))
+            {
+                    <div class="row">
+                        
+                        <div class="col-lg-6">
+                            <div class="input-group">
+                                <input type="text" id="ID" name="ID"class="form-control" placeholder="Search for...">
+                                <span class="input-group-btn">
+                                    @*<input type="submit"  class="form-control"  />*@
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+
+                }
+
             </div>
         </div>
     </div>
     <div class="container body-content">
         <div class="row">
             <div class="col-md-9">@RenderBody()</div>
-            <div class="col-md-3"><ul class="list-group-item active">
-<li class="list-group-item ">@Html.ActionLink("Products", "Index", "Products")</li>
+            <div class="col-md-3">
+                <ul class="list-group-item active">
+                    <li class="list-group-item ">@Html.ActionLink("Products", "Index", "Products")</li>
 
-<li class="list-group-item ">@Html.ActionLink("Categories", "Index", "Categories")</li>
-     </ul></div>
-        </div>
-     
+                    <li class="list-group-item ">@Html.ActionLink("Categories", "Index", "Categories")</li>
+                </ul>
+
+               
+                @*<div class="row">
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                            </span>
+                            <input type="text" class="form-control" placeholder="Search for...">
+                        </div><!-- /input-group -->
+                    </div><!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search for...">
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">Go!</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            </div>
+
+            </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
