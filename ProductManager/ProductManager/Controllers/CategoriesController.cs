@@ -8,12 +8,14 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using ProductManager;
+using ProductManager.Models;
 
 namespace ProductManager.Controllers
 {
     public class CategoriesController : Controller
     {
         private ProductManagerDbContext db = new ProductManagerDbContext();
+       
 
         // GET: Categories
         public async Task<ActionResult> Index()
@@ -47,16 +49,16 @@ namespace ProductManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "ID,Name")] Category category)
+        public async Task<ActionResult> Create([Bind(Include = "ID,Name")] CategoryViewModel category)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
+                db.Categories.Add(ModelFactory.Create(category));
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
 
-            return View(category);
+            return View(ModelFactory.Create(category));
         }
 
         // GET: Categories/Edit/5
@@ -79,15 +81,15 @@ namespace ProductManager.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "ID,Name")] Category category)
+        public async Task<ActionResult> Edit([Bind(Include = "ID,Name")] CategoryViewModel category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
+                db.Entry(ModelFactory.Create(category)).State = EntityState.Modified;
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            return View(category);
+            return View(ModelFactory.Create(category));
         }
 
         // GET: Categories/Delete/5
