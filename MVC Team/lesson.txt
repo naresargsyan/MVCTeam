@@ -1,0 +1,11 @@
+Authentication
+
+
+Autorisation
+Asp.net Identy libroary
+Claime->dictonary
+Role
+
+o out 2
+dominick baier Asp.net  thinktecture
+Application store applicationuser manager
