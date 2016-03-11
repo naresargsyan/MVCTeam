@@ -30,6 +30,13 @@ singleton
 Owin
 
 
+Webmatrix
+umbraco
+mdn.js
+developer.mozilla.org
+less
+
+
 
 manager.PasswordValidator = new PasswordValidator
             {
